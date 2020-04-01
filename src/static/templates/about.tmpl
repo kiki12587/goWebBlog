@@ -1,0 +1,19 @@
+{{define "/about.html"}}
+<!DOCTYPE html>
+<html lang="en">
+{{template "head" .}}
+<body>
+   {{template "header" .}}
+
+    <div class="widewrapper main">
+        <div class="container about">
+           {{ .about }}
+        </div>
+    </div>
+
+{{template "footer" .}}
+{{template "js" .}}
+
+</body>
+</html>
+{{end}}
