@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="decf0b54-03e8-48e5-956d-6de2ddec3a3f" name="Default Changelist" comment="" />
+    <list default="true" id="decf0b54-03e8-48e5-956d-6de2ddec3a3f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/static/templates/sidebar.tmpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/util/response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/env.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/env.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/about.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/about.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/article.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/article.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/about.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/about.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/article.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/article.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/routers.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/routers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/templates/about.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/src/static/templates/about.tmpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/templates/footer.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/src/static/templates/footer.tmpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/templates/header.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/src/static/templates/header.tmpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/templates/index.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/src/static/templates/index.tmpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/static/templates/single.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/src/static/templates/single.tmpl" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +41,9 @@
     <option name="indexEntireGoPath" value="false" />
   </component>
   <component name="ProjectId" id="1ZhDIntaWNnVFCgvKhBuzk8l1Ym" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -37,6 +57,7 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="watcher.settings" />
   </component>
   <component name="RecentsManager">
@@ -46,7 +67,7 @@
       <recent name="D:\Go源代码目录\src\goweb-blog\src\static" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Build.go build goweb-blog">
     <configuration name="go build goweb-blog" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="goweb-blog" />
       <working_directory value="$PROJECT_DIR$" />
@@ -56,9 +77,19 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="goweb-blog" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/main.go" />
+      <package value="goweb-blog" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build goweb-blog" />
+        <item itemvalue="Go Build.go build main.go" />
       </list>
     </recent_temporary>
   </component>
@@ -82,42 +113,42 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="614" y="290" key="EditFileWatcherDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585285036215" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1585577610045">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1585749843401">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1585577610045" />
-    <state width="1877" height="284" key="GridCell.Tab.0.bottom" timestamp="1585702024297">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1585749843401" />
+    <state width="1877" height="442" key="GridCell.Tab.0.bottom" timestamp="1586696021150">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="284" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585702024297" />
-    <state width="1877" height="284" key="GridCell.Tab.0.center" timestamp="1585702024297">
+    <state width="1877" height="442" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586696021150" />
+    <state width="1877" height="442" key="GridCell.Tab.0.center" timestamp="1586696021150">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="284" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585702024297" />
-    <state width="1877" height="284" key="GridCell.Tab.0.left" timestamp="1585702024297">
+    <state width="1877" height="442" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586696021150" />
+    <state width="1877" height="442" key="GridCell.Tab.0.left" timestamp="1586696021150">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="284" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585702024297" />
-    <state width="1877" height="284" key="GridCell.Tab.0.right" timestamp="1585702024297">
+    <state width="1877" height="442" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586696021150" />
+    <state width="1877" height="442" key="GridCell.Tab.0.right" timestamp="1586696021150">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="284" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585702024297" />
-    <state width="1877" height="325" key="GridCell.Tab.1.bottom" timestamp="1585295429512">
+    <state width="1877" height="442" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586696021150" />
+    <state width="1877" height="325" key="GridCell.Tab.1.bottom" timestamp="1585760388663">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="325" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585295429512" />
-    <state width="1877" height="325" key="GridCell.Tab.1.center" timestamp="1585295429512">
+    <state width="1877" height="325" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585760388663" />
+    <state width="1877" height="325" key="GridCell.Tab.1.center" timestamp="1585760388663">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="325" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585295429512" />
-    <state width="1877" height="325" key="GridCell.Tab.1.left" timestamp="1585295429512">
+    <state width="1877" height="325" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585760388663" />
+    <state width="1877" height="325" key="GridCell.Tab.1.left" timestamp="1585760388663">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="325" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585295429512" />
-    <state width="1877" height="325" key="GridCell.Tab.1.right" timestamp="1585295429512">
+    <state width="1877" height="325" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585760388663" />
+    <state width="1877" height="325" key="GridCell.Tab.1.right" timestamp="1585760388663">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="325" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585295429512" />
+    <state width="1877" height="325" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585760388663" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1585384039863">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

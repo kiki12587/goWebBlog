@@ -1,0 +1,45 @@
+     {{define "sidebar"}}
+    <aside class="col-md-4 blog-aside">
+
+                    <div class="aside-widget">
+                        <header>
+                            <h3>精选文章</h3>
+                        </header>
+                        <div class="body">
+                            <ul class="clean-list">
+
+                              {{range $i, $v := .SelectArticle}}
+                                <li><a href="single?id={{$v.Id}}">{{$v.Title}}</a></li>
+                                     {{end}}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="aside-widget">
+                        <header>
+                            <h3>推荐文章</h3>
+                        </header>
+                        <div class="body">
+                            <ul class="clean-list">
+                                {{range $i, $v := .RecoArticle}}
+                                <li><a href="single?id={{$v.Id}}">{{$v.Title}}</a></li>
+                                {{end}}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="aside-widget">
+                        <header>
+                            <h3>标签</h3>
+                        </header>
+                        <div class="body clearfix">
+                            <ul class="tags">
+                                {{range $i, $v := .SelectLabel}}
+                                <li><a href="single?id={{$v.Id}}">{{$v.Label_name}}</a></li>
+                                {{end}}
+                            </ul>
+                        </div>
+                    </div>
+
+                </aside>
+                    {{end}}
