@@ -20,6 +20,7 @@ func InitModel() {
 	)
 	db, err = gorm.Open("mysql",
 		"root:zxcZXC112233@/goadmin?charset=utf8&parseTime=True&loc=Local")
+
 	if err != nil {
 		//如果连接失败 尝试重连 让系统等待3秒钟
 		time.Sleep(time.Second * 3)
@@ -28,6 +29,7 @@ func InitModel() {
 		if tag == 3 {
 			fmt.Printf("尝试重连失败,%v次\n", tag)
 			fmt.Println(err)
+
 			return
 		} else {
 			fmt.Printf("尝试重连第%v次\n", tag)
