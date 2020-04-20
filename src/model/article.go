@@ -3,13 +3,17 @@ package model
 import (
 	"database/sql/driver"
 	"fmt"
+<<<<<<< HEAD
 	"github.com/jinzhu/gorm"
+=======
+>>>>>>> 6d3487cdaa9580fd5e4704d65613426a1f67018f
 	"strconv"
 	"time"
 )
 
 type Find struct {
 	Article []Article
+<<<<<<< HEAD
 }
 
 type Article struct {
@@ -37,6 +41,25 @@ type ArticleMessage struct {
 	Email      string `gorm:"column:email"`
 	Message    string `gorm:"column:message"`
 	Create_at  string `gorm:"column:create_at"`
+=======
+}
+
+type Article struct {
+	Id                  int       `gorm:"column:id"`
+	Title               string    `gorm:"column:title"`
+	Auth                string    `gorm:"column:auth"`
+	Image               string    `gorm:"column:image"`
+	Info                string    `gorm:"column:info"`
+	Label               string    `gorm:"column:label"`
+	Content             string    `gorm:"column:content"`
+	Category_id         int       `gorm:"column:category_id"`
+	Create_at           time.Time `gorm:"column:create_at"`
+	Article_comment_num int       `gorm:"column:article_comment_num"`
+}
+
+type LocalTime struct {
+	time.Time
+>>>>>>> 6d3487cdaa9580fd5e4704d65613426a1f67018f
 }
 
 func (t LocalTime) MarshalJSON() ([]byte, error) {
@@ -83,6 +106,7 @@ func ArticleDetail(id int) (article *Article) {
 		Select("article.id,article.title,article.auth,article.image,article.info,article.content,article.create_at,article_statistics.article_comment_num").
 		Joins("left join article_statistics on article.id = article_statistics.id").
 		Where("article.id = ?", id).
+<<<<<<< HEAD
 		Scan(&article)
 	var (
 		article_message []ArticleMessage
@@ -92,6 +116,10 @@ func ArticleDetail(id int) (article *Article) {
 	G_db.Table("article_message").Select("id,nickname,message,create_at").Where("article_id = ?", article.Id).Order("create_at desc").Limit(8).Scan(&article.Article_message)
 	//更新文章浏览数
 	G_db.Table("article_statistics").Where("id = ?", article.Id).Update("article_browse_num", gorm.Expr("article_browse_num + ?", 1))
+=======
+		Scan(article)
+	fmt.Printf("文章详情:%#v\n", article)
+>>>>>>> 6d3487cdaa9580fd5e4704d65613426a1f67018f
 	return
 }
 
