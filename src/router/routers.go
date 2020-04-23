@@ -9,11 +9,8 @@ import (
 	"html/template"
 	"net/http"
 	"strconv"
-<<<<<<< HEAD
 	"strings"
 	"time"
-=======
->>>>>>> 6d3487cdaa9580fd5e4704d65613426a1f67018f
 )
 
 //文章首页数据
@@ -31,10 +28,6 @@ func ArticleDetail(c *gin.Context) {
 	idTemp := c.Query("id")
 	id, _ := strconv.Atoi(idTemp)
 	articleDetail = controller.GetIndexArticleDetail(id)
-<<<<<<< HEAD
-=======
-	fmt.Printf("文章详情数据为%v\n", articleDetail)
->>>>>>> 6d3487cdaa9580fd5e4704d65613426a1f67018f
 	util.ResponseHtmlHandle(c, http.StatusOK, "/single.html", articleDetail, "")
 }
 
@@ -45,7 +38,6 @@ func About(c *gin.Context) {
 	util.ResponseHtmlHandle(c, http.StatusOK, "/about.html", about, "")
 }
 
-<<<<<<< HEAD
 //接收用户文章评论
 func ArticleMessage(c *gin.Context) {
 	var message *model.ArticleMessage
@@ -62,8 +54,6 @@ func ArticleMessage(c *gin.Context) {
 
 }
 
-=======
->>>>>>> 6d3487cdaa9580fd5e4704d65613426a1f67018f
 //初始化静态资源以及路由
 func InitWebHtml() (err error) {
 	r := gin.Default()
@@ -72,10 +62,7 @@ func InitWebHtml() (err error) {
 			return template.HTML(str)
 		},
 	})
-<<<<<<< HEAD
 
-=======
->>>>>>> 6d3487cdaa9580fd5e4704d65613426a1f67018f
 	//1.静态资源文件加载
 	r.LoadHTMLGlob(config.GetEnv().Static + "/templates/*")
 	r.Static("css", config.GetEnv().Static+"/assets/css")
@@ -90,7 +77,6 @@ func InitWebHtml() (err error) {
 		v1.GET("/index", ArticleIndex)
 	}
 
-<<<<<<< HEAD
 	//文章评论留言
 	r.POST("/message", ArticleMessage)
 
@@ -98,12 +84,11 @@ func InitWebHtml() (err error) {
 	r.GET("/about", About)
 
 	//给作者留言
-=======
+
 	//作者
 	r.GET("/about", About)
 
 	//留言
->>>>>>> 6d3487cdaa9580fd5e4704d65613426a1f67018f
 	r.GET("/contact", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "/contact.html", nil)
 	})
