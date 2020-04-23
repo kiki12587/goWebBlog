@@ -2,6 +2,7 @@ package model
 
 import (
 	"database/sql/driver"
+	"errors"
 	"fmt"
 	"github.com/jinzhu/gorm"
 	"strconv"
@@ -39,6 +40,17 @@ type ArticleMessage struct {
 	Create_at  string `gorm:"column:create_at"`
 }
 
+type AuthMessage struct {
+	Id         int    `gorm:"column:id"`
+	Nickname   string `gorm:"column:nickname"`
+	Email      string `gorm:"column:email"`
+	Message    string `gorm:"column:message"`
+	Create_at  string `gorm:"column:create_at"`
+}
+
+
+
+
 func (t LocalTime) MarshalJSON() ([]byte, error) {
 	//格式化秒
 	seconds := t.Unix()
@@ -68,13 +80,49 @@ func IndexArticle() (result Find) {
 	)
 	article = make([]Article, 100)
 
-	G_db.Table("article").Select("id,title,auth,image,info,create_at").Where("article_status = '1'").Limit(3).Order("create_at desc").Scan(&article)
+	G_db.Table("article").Select("id,title,auth,image,info,create_at").Where("article_status = '1'").Limit(6).Order("create_at desc").Scan(&article)
 
 	result = Find{
 		Article: article,
 	}
 	return
 }
+
+//返回首页标签文章数据
+func IndexArticleLabel(label string) (result Find) {
+	var (
+		article []Article
+	)
+	article = make([]Article, 100)
+
+	G_db.Table("article").Select("id,title,auth,image,info,create_at").Where("article_status = '1' AND label IN (?)",[]string{label}).Limit(6).Order("create_at desc").Scan(&article)
+
+	result = Find{
+		Article: article,
+	}
+	return
+}
+
+//返回查找文章数据
+func IndexArticleSearch(search string) (result Find) {
+	var (
+		article []Article
+	)
+	article = make([]Article, 100)
+
+	G_db.Table("article").Select("id,title,auth,image,info,create_at").
+		Where("article_status = '1'").Where( "title regexp  ? OR info regexp ? OR content regexp ?",search ,search ,search ).
+		Limit(6).Order("create_at desc").Scan(&article)
+
+	result = Find{
+		Article: article,
+	}
+	return
+}
+
+
+
+
 
 //返回文章详情页数据
 func ArticleDetail(id int) (article *Article) {
@@ -103,4 +151,13 @@ func SaveArticMessage(message *ArticleMessage) interface{} {
 	//更新文章评论数
 	G_db.Table("article_statistics").Where("id = ?", message.Article_id).Update("article_comment_num", gorm.Expr("article_comment_num + ?", 1))
 	return create
+}
+
+//用户留言
+func SaveUserMessageByAuth(userMessage *AuthMessage)error{
+	err := G_db.Table("article_user_message").Create(&userMessage)
+	if err.Error != nil{
+      return errors.New("用户留言失败")
+	}
+	return nil
 }

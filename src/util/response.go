@@ -1,10 +1,8 @@
 package util
 
 import (
-<<<<<<< HEAD
-=======
+
 	"fmt"
->>>>>>> 6d3487cdaa9580fd5e4704d65613426a1f67018f
 	"github.com/gin-gonic/gin"
 	"goweb-blog/src/config"
 	"goweb-blog/src/model"
@@ -62,10 +60,8 @@ func ResponseHtmlHandle(c *gin.Context, status int, url string, data interface{}
 	model.G_db.Table("article").Select("id,title").Where("selected_articles_status = '1' and article_status = '1'").Limit(6).Order("create_at desc").Scan(&recoArticle)
 	model.G_db.Table("article_label").Select("id,label_name").Order("id desc").Scan(&selectLabel)
 
-<<<<<<< HEAD
-=======
 	fmt.Printf("%#v\n", recentPosts)
->>>>>>> 6d3487cdaa9580fd5e4704d65613426a1f67018f
+
 	if imageAddr == "" {
 		imageAddr = config.GetEnv().ImageAddr
 	}
@@ -83,8 +79,7 @@ func ResponseHtmlHandle(c *gin.Context, status int, url string, data interface{}
 	c.Header("Content-Type", "text/html; charset=utf-8")
 	c.HTML(status, url, publicResp)
 }
-<<<<<<< HEAD
+
 
 //Api返回
-=======
->>>>>>> 6d3487cdaa9580fd5e4704d65613426a1f67018f
+

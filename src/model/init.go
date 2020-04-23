@@ -23,7 +23,7 @@ func InitModel() {
 
 	if err != nil {
 		//如果连接失败 尝试重连 让系统等待3秒钟
-		time.Sleep(time.Second * 3)
+		time.Sleep(time.Second * 10)
 		tag++
 		//超过三次重连则失败
 		if tag == 3 {
