@@ -706,9 +706,10 @@ The blog main page boxes
 }
 
 .blog-teaser header img {
+  height: 305px;
   margin-bottom: 20px;
   width: 100%;
-  opacity: 0.8;
+  opacity: 1.8;
 }
 
 .blog-teaser header h3 {
