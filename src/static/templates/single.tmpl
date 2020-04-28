@@ -19,7 +19,9 @@
                         <div class="body">
                             <h1>{{ .Data.Title }}</h1>
                             <div class="meta">
-                                <i class="fa fa-user"></i> {{ .Data.Auth }} <i class="fa fa-calendar"></i>{{ .Data.Create_at }}<i class="fa fa-comments"></i><span class="data"><a href="#comments">{{ .Data.Article_comment_num }}</a></span>
+                                <i class="fa fa-user"></i> {{ .Data.Auth }} <i class="fa fa-calendar"></i>{{ .Data.Create_at }}
+                                <i class="fa fa-comments"></i><span class="data"><a href="#comments">{{ .Data.Article_comment_num }}</a></span>
+                                <i class="fa fa-eye"></i><span class="data"><a href="#comments">{{ .Data.Article_browse_num }}</a></span>
                             </div>
                           {{ .Data.Content | safe }}
                         </div>
@@ -34,6 +36,7 @@
                         <hr>
 
                         <h2><i class="fa fa-comments"></i> {{ .Data.Article_comment_num }}评论</h2>
+                        <h2><i class="fa fa-eye"></i> {{ .Data.Article_browse_num }}浏览</h2>
 
                      {{range $i, $v := .Data.Article_message}}
 

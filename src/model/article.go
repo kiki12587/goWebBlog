@@ -24,6 +24,7 @@ type Article struct {
 	Category_id         int       `gorm:"column:category_id"`
 	Create_at           time.Time `gorm:"column:create_at"`
 	Article_comment_num int       `gorm:"column:article_comment_num"`
+	Article_browse_num  int       `gorm:"column:article_browse_num"`
 	Article_message     []ArticleMessage
 }
 
@@ -41,15 +42,18 @@ type ArticleMessage struct {
 }
 
 type AuthMessage struct {
-	Id         int    `gorm:"column:id"`
-	Nickname   string `gorm:"column:nickname"`
-	Email      string `gorm:"column:email"`
-	Message    string `gorm:"column:message"`
-	Create_at  string `gorm:"column:create_at"`
+	Id        int    `gorm:"column:id"`
+	Nickname  string `gorm:"column:nickname"`
+	Email     string `gorm:"column:email"`
+	Message   string `gorm:"column:message"`
+	Create_at string `gorm:"column:create_at"`
 }
 
-
-
+type MessageStatistics struct {
+	Id                  int `gorm:"column:id"`
+	Article_comment_num int `gorm:"column:article_comment_num"`
+	Article_browse_num  int `gorm:"column:article_browse_num"`
+}
 
 func (t LocalTime) MarshalJSON() ([]byte, error) {
 	//格式化秒
@@ -95,7 +99,7 @@ func IndexArticleLabel(label string) (result Find) {
 	)
 	article = make([]Article, 100)
 
-	G_db.Table("article").Select("id,title,auth,image,info,create_at").Where("article_status = '1' AND label IN (?)",[]string{label}).Limit(6).Order("create_at desc").Scan(&article)
+	G_db.Table("article").Select("id,title,auth,image,info,create_at").Where("article_status = '1' AND label IN (?)", []string{label}).Limit(6).Order("create_at desc").Scan(&article)
 
 	result = Find{
 		Article: article,
@@ -111,7 +115,7 @@ func IndexArticleSearch(search string) (result Find) {
 	article = make([]Article, 100)
 
 	G_db.Table("article").Select("id,title,auth,image,info,create_at").
-		Where("article_status = '1'").Where( "title regexp  ? OR info regexp ? OR content regexp ?",search ,search ,search ).
+		Where("article_status = '1'").Where("title regexp  ? OR info regexp ? OR content regexp ?", search, search, search).
 		Limit(6).Order("create_at desc").Scan(&article)
 
 	result = Find{
@@ -120,44 +124,78 @@ func IndexArticleSearch(search string) (result Find) {
 	return
 }
 
-
-
-
-
 //返回文章详情页数据
 func ArticleDetail(id int) (article *Article) {
 	article = &Article{}
 	G_db.Table("article").
-		Select("article.id,article.title,article.auth,article.image,article.info,article.content,article.create_at,article_statistics.article_comment_num").
+		Select("article.id,article.title,article.auth,article.image,article.info,article.content,article.create_at,article_statistics.article_comment_num,article_statistics.Article_browse_num").
 		Joins("left join article_statistics on article.id = article_statistics.id").
 		Where("article.id = ?", id).
 		Scan(&article)
 	var (
-		article_message []ArticleMessage
+		article_message    []ArticleMessage
+		message_statistics MessageStatistics
 	)
 	article_message = make([]ArticleMessage, 100)
 	article.Article_message = article_message
 	G_db.Table("article_message").Select("id,nickname,message,create_at").Where("article_id = ?", article.Id).Order("create_at desc").Limit(8).Scan(&article.Article_message)
+
 	//更新文章浏览数
-	G_db.Table("article_statistics").Where("id = ?", article.Id).Update("article_browse_num", gorm.Expr("article_browse_num + ?", 1)).
-		Scan(article)
-	fmt.Printf("文章详情:%#v\n", article)
+	//先查询文章问否存在
+	G_db.Table("article_statistics").Select("id").Where("id = ?", article.Id).Limit(1).Scan(&message_statistics)
+	fmt.Printf("%v\n", message_statistics)
+	if message_statistics.Id == 0 {
+
+		var data MessageStatistics
+		data = MessageStatistics{
+			article.Id,
+			0,
+			1,
+		}
+		G_db.Table("article_statistics").Create(data)
+
+	} else {
+
+		//更新文章评论数
+		G_db.Table("article_statistics").Where("id = ?", article.Id).Update("article_browse_num", gorm.Expr("article_browse_num + ?", 1)).
+			Scan(article)
+
+	}
+
 	return
 }
 
 //保存用户文章评论数据
 func SaveArticMessage(message *ArticleMessage) interface{} {
 	create := G_db.Table("article_message").Create(&message)
-	//更新文章评论数
-	G_db.Table("article_statistics").Where("id = ?", message.Article_id).Update("article_comment_num", gorm.Expr("article_comment_num + ?", 1))
+
+	var message_statistics MessageStatistics
+	//先查询文章问否存在
+	G_db.Table("article_statistics").Select("id").Where("id = ?", message.Article_id).Limit(1).Scan(&message_statistics)
+	if message_statistics.Id == 0 {
+
+		var data MessageStatistics
+		data = MessageStatistics{
+			message.Article_id,
+			1,
+			0,
+		}
+		G_db.Table("article_statistics").Create(data)
+
+	} else {
+		//更新文章评论数
+		G_db.Table("article_statistics").Where("id = ?", message.Article_id).Update("article_comment_num", gorm.Expr("article_comment_num + ?", 1))
+
+	}
+
 	return create
 }
 
 //用户留言
-func SaveUserMessageByAuth(userMessage *AuthMessage)error{
+func SaveUserMessageByAuth(userMessage *AuthMessage) error {
 	err := G_db.Table("article_user_message").Create(&userMessage)
-	if err.Error != nil{
-      return errors.New("用户留言失败")
+	if err.Error != nil {
+		return errors.New("用户留言失败")
 	}
 	return nil
 }
